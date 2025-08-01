@@ -1,0 +1,30 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f4f4f4;
+
+}
+
+.bank {
+  width: 90%;
+  max-width: 400px;
+}
+
+.card {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.balance {
+  color: green;
+  font-size: 30px;
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 100%;
+  
