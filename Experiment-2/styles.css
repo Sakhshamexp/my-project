@@ -1,30 +1,44 @@
 body {
+  margin: 0;
+  padding: 0;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background: #f4f4f4;
-
+  background-color: #e9ecef;
+  font-family: sans-serif;
 }
 
 .bank {
-  width: 90%;
-  max-width: 400px;
+  width: 95%;
+  max-width: 420px;
 }
 
 .card {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
+  background-color: #ffffff;
+  padding: 25px;
+  border-radius: 12px;
   text-align: center;
+  box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.1);
 }
 
 .balance {
-  color: green;
-  font-size: 30px;
-  margin-bottom: 20px;
+  font-size: 28px;
+  color: #28a745;
+  margin-bottom: 15px;
 }
 
 .btn {
   width: 100%;
-  
+  padding: 12px;
+  font-size: 15px;
+  background-color: #0069d9;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.btn:hover {
+  background-color: #0053b3;
+}
