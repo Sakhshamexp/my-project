@@ -1,0 +1,33 @@
+HTML PART
+<div class="bank">
+This part is like the main wrapper. i put everything inside this so things stays center and doesn't look messy. it also helps to control space and layout easily.
+
+<div class="box">
+this is the white box where i kept balance and both buttons. it looks like card but i didn’t name it that. gives proper gap around stuff so its not just floating.
+
+<h2 class="balance">$5000</h2>
+this shows the money. i used h2 to make it bigger, and with class “balance” i made it green n bold so it pops.
+
+<button class="btn deposit"> and <button class="btn withdraw">
+these are the 2 buttons for deposit and withdraw. both using same class “btn” so they look same style, just diff names for action.
+
+CSS PART
+body
+I used flex and aligned things center so that the whole thing comes in middle of screen. Also used light grey background so page doesn’t look boring.
+
+.bank
+This keeps the size under control. I set width like 85% and max-width 400px so it looks good on phone also. Also centered it using margin: auto.
+
+.box
+This is the white area. I gave it padding and border-radius so it’s a bit round. Also added background white. It's the layout part I added like you asked (from that pic).
+
+.balance
+This is the money text. I made font-size bigger like 35px and made it green. Added margin-bottom so the buttons don’t touch it.
+
+.btn
+These are for both buttons. Made width 100% so they stretch across, and gave some padding. Color is blue with black text, and when mouse hover it changes to dark blue. Added border-radius to make it a bit round.
+
+WHAT I LEARNED
+How to create a simple layout using HTML and CSS.
+Learned how to center things using flexbox (was tricky but worked).
+How to link CSS file inside HTML using link tag in head.
