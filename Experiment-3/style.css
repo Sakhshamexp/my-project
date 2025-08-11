@@ -1,0 +1,58 @@
+:root {
+    --head: #4caf50;
+    --foot: #4caf50;
+    --side: #f0f0f0;
+    --main: #fff;
+    --text: #000;
+}
+
+body {
+    font-family: sans-serif;
+}
+
+input {
+    display: none;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 150px auto;
+    grid-template-rows: 50px auto 40px;
+    height: 100vh;
+    border: 3px solid red;
+}
+
+header {
+    grid-column: 1 / 3;
+    background: var(--head);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
+}
+
+nav {
+    background: var(--side);
+    padding: 10px;
+}
+
+main {
+    background: var(--main);
+    padding: 15px;
+    color: var(--text);
+}
+
+footer {
+    grid-column: 1 / 3;
+    background: var(--foot);
+    text-align: center;
+    padding: 5px;
+}
+
+input:checked ~ .grid {
+    --head: #222;
+    --foot: #222;
+    --side: #333;
+    --main: #111;
+    --text: #eee;
+}
