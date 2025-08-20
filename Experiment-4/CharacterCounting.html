@@ -7,7 +7,7 @@
 </head>
 <body>
      <!--Creatin Page Title-->
-  <h2>Live Character Counter</h2>
+  <h2>Live Character Counter!</h2>
   
   <!--the input user will put-->
   <textarea id="textInput" placeholder="Start typing..."></textarea>
@@ -15,7 +15,19 @@
   <!--it will display character counter and span starts at 0 and will be updated using javascript-->
   <p>Characters: <span id="charCount">0</span></p>
 
-    <!--JavaFile Script-->
-  <script src="script.js"></script>
+  <!--JavaFile-->
+  <script>
+    //This will take the elem from text area from htlm using its id;
+    let textarea = document.getElementById("textInput");
+
+    //elem where we will display our char count bascially ID = CharacterCount;
+    let counter = document.getElementById("charCount");
+
+    // this part run every time the event happens :D
+    textarea.addEventListener("input", function(){
+        let length = textarea.value.length;
+        counter.textContent = length;
+    });
+  </script>
 </body>
 </html>
