@@ -1,0 +1,23 @@
+The HTML sets up the basic structure of the drawing tool.It includes a heading to show the title, 
+an SVG element that acts as the canvas for drawing, and a “Clear” button to remove all drawings.
+The id attributes allow JavaScript to access the canvas and button easily.The SVG’s width and height define the drawing area,  
+and the button provides a simple way to clear the canvas without refreshing the page.  
+This structure forms the foundation for the interactive tool.
+
+JavaScript is used to make the drawing interactive.First, we get the SVG canvas using document.getElementById("canvas").  
+Then, we use a variable drawing to check if the user is currently drawing,  
+and path to store the line being drawn.  
+When the mouse is pressed down on the canvas (onmousedown), we start drawing.  
+A new path element is created and its starting point is set to the mouse position using "M" in the d attribute.  
+We also set the stroke color, fill, and thickness, and add it to the canvas.  
+While moving the mouse (onmousemove), if drawing is true, we update the path by adding new points using "L",  
+which draws a line from the previous point to the current mouse position.  
+When the mouse is released (onmouseup), we stop drawing by setting drawing to false.  
+The clear button simply removes all the paths from the canvas by setting innerHTML of the canvas to an empty string.  
+This approach keeps track of the drawing state and dynamically updates the SVG path to follow the mouse,  
+making it simple and beginner-friendly.
+
+The CSS styles the page to make it clean and user-friendly. It gives the canvas a border and a light background, and changes the cursor to a crosshair for 
+more precise drawing.  
+The button is styled with padding and margin,making it easy to click and visually appealing.  
+Overall, these styles enhance both the look and usability of the drawing tool.
