@@ -1,0 +1,21 @@
+In  HTML, I first set up the structure of the page with a heading called Product List.
+Then I added a dropdown menu that contains four options — All, Clothing, Electronics, and Books.
+The dropdown is given an ID so that I can access it later in JavaScript.
+
+After that, I created a section called productList where I placed all the products.
+Each product is written inside a <div> with the class "product".
+Along with that, I used a special attribute called data-category to define which category each product belongs to.
+For example, T-Shirt and Jeans have data-category = clothing
+Headphones and Smartphone have data-category = electronics,
+and Novel and Cookbook are under data-category = books.
+This way, JavaScript can easily identify which product belongs to which group.
+
+In the CSS part, I styled the page to look neat.
+I gave the body some margin and used a simple font for readability.
+The products have borders, padding, and spacing so that each one looks separate and easy to distinguish.
+
+In JavaScript , I first selected the dropdown and all the product elements.
+Then I added an event listener so that whenever the user changes the dropdown option, a function runs.
+This function checks the selected value and compares it with each product’s data-category.
+If the user selects “All,” then every product is shown.
+Otherwise, only the products that belong to the selected category are displayed, and the rest are hidden.
