@@ -33,4 +33,4 @@ and vertically.
 Learning Outcomes:
 - Learned how to create a reusable component in React and pass dynamic data via props.
 - Understood the importance of modular file structure (components, usage, styling).
-- Learned to apply both global and component-specific CSS for layout and design.
+- Learned to apply both global and component-specific CSS for layout and design...
