@@ -1,0 +1,60 @@
+📘 Digital Library UI – Description
+
+COMPONENT: BookManager
+    Purpose:
+        Provides a simple interface to organize a digital collection of books (title and author).
+    Features:
+        Search Bar → Lets users filter the visible book list instantly by typing keywords in title/author.
+        Add Book → Accepts new book details (title & author) and appends them to the collection.
+        Delete Book → Each book has a delete option to remove it from the collection.
+    Effect:
+        Demonstrates how React state and event handling can be used to make the interface update live without page refresh.
+
+FILE: App.jsx
+    Purpose:
+        Works as the main container that displays the BookManager component.
+    Effect:
+        Ensures all library operations (searching, adding, deleting) are brought together in one place.
+
+FILE: BookManager.jsx
+    Purpose:
+        Handles the logic for book collection management.
+    Core Elements:
+        State Variables:
+            library → Holds the full list of books.
+            query → Tracks the search keyword.
+            titleInput / authorInput → Manage input values when adding new books.
+        Functions:
+            updateQuery → Adjusts the search filter dynamically.
+            addBook → Pushes a new entry into the list.
+            deleteBook → Removes a selected book.
+    Effect:
+        Reactively re-renders the visible book list whenever state changes occur.
+
+FILE: App.css
+    Purpose:
+        Defines the look and feel of the UI.
+    Key Styles:
+        .wrapper → Provides padding, border, and spacing for the app layout.
+        .search-input → Styles the search field neatly.
+        .form-section → Places the add-book inputs and button in line.
+        .book-item → Displays each book in a card-like format.
+        .delete-btn → Styles the delete button for clarity.
+
+FILE: main.jsx
+    Purpose:
+        Acts as the entry file for rendering the React components.
+    Effect:
+        Mounts the App component inside the root DOM node.
+
+FILE: index.css
+    Purpose:
+        Applies universal styling for the page.
+    Effect:
+        Resets default margins/paddings, uses a clean font, and sets a light background tone.
+
+LEARNING OUTCOMES
+    - Gained practice in managing state with React’s useState hook.
+    - Understood handling of user-driven events like input typing, form submission, and button clicks.
+    - Learned to dynamically update UI elements like lists using filtering and mapping.
+    - Improved ability to design React component structures and apply custom CSS styling.

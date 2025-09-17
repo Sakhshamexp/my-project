@@ -39,9 +39,9 @@ class Teacher extends Person {
 }
 
 export default function App() {
-  const student1 = new Student("Alice", 20, "Computer Science");
-  const student2 = new Student("Bob", 22, "Mechanical Engineering");
-  const teacher1 = new Teacher("Mr. Smith", 45, "Mathematics");
+  const student1 = new Student("Sakhsham", 22, "Computer Science");
+  const student2 = new Student("Parv", 21, "Mechanical Engineering");
+  const teacher1 = new Teacher("Adarsh", 25, "Mathematics");
 
   return (
     <div className="app-container">
