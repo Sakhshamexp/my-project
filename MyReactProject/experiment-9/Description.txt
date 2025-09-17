@@ -1,0 +1,93 @@
+Class Hierarchy: Person, Student, and Teacher
+
+CLASS: Person
+    Purpose:
+        Acts as the base class for all people.
+    Attributes:
+        - name: Must be a string with only alphabetic characters.
+        - age: Must be a positive integer.
+    Methods:
+        - getDetails(): Returns "Name: [name], Age: [age]".
+    Effect:
+        Provides shared data and behavior that other classes can extend.
+
+CLASS: Student (inherits Person)
+    Purpose:
+        Represents a student with additional academic details.
+    Extra Attribute:
+        - course/grade: String indicating the enrolled program or grade level.
+    Methods:
+        - getDetails(): Overridden to return "Name: [name], Age: [age], Course: [course]".
+    Effect:
+        Extends Person with student-specific information.
+
+CLASS: Teacher (inherits Person)
+    Purpose:
+        Represents a teacher with subject expertise.
+    Extra Attribute:
+        - subject/department: String representing the subject taught.
+    Methods:
+        - getDetails(): Overridden to return "Name: [name], Age: [age], Subject: [subject]".
+    Effect:
+        Extends Person with teacher-specific information.
+
+IMPLEMENTATION OUTLINE
+    - Define a Person class with name, age, and a getDetails() method.
+    - Create a Student subclass:
+        * Inherits name and age.
+        * Adds course/grade property.
+        * Redefines getDetails() to include the course.
+    - Create a Teacher subclass:
+        * Inherits name and age.
+        * Adds subject/department property.
+        * Redefines getDetails() to include the subject.
+    - Instantiate Student and Teacher objects to demonstrate inheritance and method overriding.
+
+LEARNING TAKEAWAYS
+    - Built a reusable base class in JavaScript using ES6 syntax.
+    - Understood inheritance and how subclasses extend a parent class.
+    - Practiced method overriding to tailor subclass behavior.
+    - Strengthened understanding of object-oriented programming concepts in JavaScript.
+=======
+Person Class Hierarchy with Student and Teacher Subclasses – Description
+CLASS: Person
+    ->Purpose: Defines the base structure for all persons.
+    ->Properties:
+        name: Required, string type (only alphabets allowed).
+        age: Required, numeric type (positive integer).
+    ->Methods:
+        getDetails(): Returns "Name: [name], Age: [age]".
+        Effect: Provides common attributes and methods that can be reused by subclasses.
+
+CLASS: Student (extends Person)
+    ->Purpose: Specialized subclass for student details.
+    ->Additional Property:
+        course or grade: Required, string type (represents enrolled course or grade).
+    ->Methods:
+        Overrides getDetails() → Returns "Name: [name], Age: [age], Course: [course]".
+    ->Effect: Adds student-specific information while still inheriting from Person.
+
+CLASS: Teacher (extends Person)
+    ->Purpose: Specialized subclass for teacher details.
+    ->Additional Property:
+        subject or department: Required, string type (represents subject taught).
+    ->Methods:
+        Overrides getDetails() → Returns "Name: [name], Age: [age], Subject: [subject]".
+    ->Effect: Adds teacher-specific details while still reusing base class properties.
+
+IMPLEMENTATION DETAILS
+    ->Create a Person class with properties name, age, and a method getDetails().
+    ->Create Student subclass:
+        Inherits name and age from Person.
+        Adds new property course.
+        Overrides getDetails() to include course.
+    ->Create Teacher subclass:
+        Inherits name and age from Person.
+        Adds new property subject.
+        Overrides getDetails() to include subject.
+    ->Create instances of Student and Teacher to demonstrate inheritance and method overriding.
+
+LEARNING OUTCOMES
+    Learned how to create a base class in JavaScript using ES6.
+    Understood inheritance and how subclasses extend functionality.
+    Practiced method overriding to customize behavior in subclasses.
