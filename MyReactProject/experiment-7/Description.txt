@@ -1,0 +1,36 @@
+Component: ProductCard
+Purpose: ProductCard is a reusable React component designed to display a product's details. 
+By creating this single component, I avoided writing the same code repeatedly for each item.
+Props: The component accepts props—name, price, and inStock. These props customize each card. 
+For example, name="Gaming Headset" makes the component display "Gaming Headset" as the product's name.
+Effect: This allows rendering multiple product cards with different information just by changing 
+the props, without modifying ProductCard itself.
+
+File: App.jsx
+Purpose: App.jsx is the main application component where ProductCard is imported and used.
+Effect: By calling <ProductCard ... /> multiple times with different props, the page is populated 
+with a list of unique products. This demonstrates React’s modular UI design.
+
+File: ProductCard.jsx
+Purpose: Contains the code for the ProductCard component.
+Effect: Defines a template (div with h3 and p tags) that displays product information using props 
+passed from App.jsx.
+
+File: App.css
+Purpose: Provides styling for the application layout and product cards.
+Main Elements: .container sets border and max-width, .products uses flexbox to arrange cards, 
+.product-card styles individual cards with border and padding.
+
+File: main.jsx
+Purpose: Entry point of the application.
+Effect: Renders the App component into the root element of the HTML page.
+
+File: index.css
+Purpose: Global styling for the application.
+Effect: Sets font, background color, and uses flexbox on the body to center the app horizontally 
+and vertically.
+
+Learning Outcomes:
+- Learned how to create a reusable component in React and pass dynamic data via props.
+- Understood the importance of modular file structure (components, usage, styling).
+- Learned to apply both global and component-specific CSS for layout and design...
