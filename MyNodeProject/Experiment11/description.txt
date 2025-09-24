@@ -1,0 +1,42 @@
+REST API for Playing Card Collection Using Express.js
+
+This document explains a small RESTful API built using Express.js to manage a collection of playing cards.
+The API allows you to list all cards, get a specific card by ID, add new cards, and delete cards. Data is stored in
+memory using a simple array, and responses are returned in JSON format.
+
+Server Setup;
+The app starts by importing Express and creating an app instance. Middleware like express.json() is used to parse incoming JSON requests. 
+The server listens on a port so clients can interact with it.
+
+Data Storage:
+Cards are stored in a JavaScript array called 'cards'. Each card has an
+id, suit, and value. Using in-memory storage makes it easy to test
+operations without a database.
+
+API Endpoints
+1. List all cards
+    GET /cards
+    Returns all cards as a JSON array.
+
+2. Get a specific card
+    GET /cards/:id
+   Returns the card with the given ID or an error if not found.
+
+3. Add a new card
+   POST /cards
+    Request body includes suit and value.
+    Adds the card to the array with a unique ID and returns it.
+
+4. Delete a card
+    DELETE /cards/:id
+    Removes the card with the given ID and confirms deletion.
+    If ID is not found, returns an error message.
+
+Error Handling:
+The API provides clear JSON responses for both successful and failed operations, so clients always know what happened.
+
+Learning Outcomes:
+- Understand routing and HTTP methods (GET, POST, DELETE).
+- Manage data in memory: create, read, delete operations.
+- Work with JSON to send and receive structured data.
+- Build a clean, simple Express.js application with clear endpoints.

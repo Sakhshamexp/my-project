@@ -1,0 +1,55 @@
+Concurrent Ticket Booking System with Seat Locking and Confirmation
+
+This document describes a ticket booking system built using Node.js and Express.js that is designed to handle multiple users who are simultaneously trying to
+reserve seats at the same time for events or movie shows. The main goal of this project is to safely manage seat bookings by implementing a seat locking
+mechanism, which prevents race conditions, conflicts, and double bookings even when many users access the system concurrently.
+
+Server Setup:
+The application starts by importing Express and creating an Express application instance. It also uses CORS middleware to allow requests from different
+origins, and express.json() middleware to parse incoming JSON request bodies correctly. The server is configured to listen on a defined port so clients can
+interact with it to view available seats, lock a seat temporarily, or confirm their booking safely.
+
+Data Storage
+Seats are stored in memory using a simple JavaScript object. Each seat contains a status field (available, locked, or booked), a lock timestamp, and a timeout
+ID that automatically releases a locked seat if it is not confirmed within one minute. In this example, there are 10 seats pre-initialized for testing
+purposes. Using in-memory storage keeps the logic simple, easy to test, and makes it straightforward to understand how locks and bookings are handled.
+
+Core Features and API Endpoints;
+
+1. Viewing All Seats
+   - Endpoint: GET /seats
+   - Returns the current state of all seats, showing whether each seat is available, locked, or booked. This allows users to easily identify which
+     seats are free to lock or book and plan their reservations accordingly.
+
+2. Locking a Seat
+   - Endpoint: POST /lock/:id
+   - When a user wants to reserve a seat, the system first checks if the seat exists and whether it is currently available.
+   - If the seat is available, it is immediately marked as "locked", and a timestamp is recorded to track when the lock started.
+   - A timeout is set so that if the seat is not confirmed within one minute, it automatically becomes available again. This prevents seats from remaining
+     locked indefinitely and allows other users to access them.
+   - If a seat is already locked or booked, the system returns a clear error message to inform the user that the action cannot be completed.
+
+3. Confirming a Seat
+   - Endpoint: POST /confirm/:id
+   - This endpoint allows a user to finalize the booking of a seat that is currently locked.
+   - Once confirmed, the seat status changes from "locked" to "booked", and the timeout for automatic release is canceled.
+   - Attempting to confirm a seat that has not been locked results in an error message, ensuring the locking mechanism is always respected.
+
+Concurrency Handling: 
+One of the main challenges in this system is handling multiple users attempting to book the same seat at the same time. The seat locking mechanism ensures that
+once a seat is locked, no other user can lock or confirm it until it is either booked or automatically released. This approach prevents double booking, keeps
+the allocation fair, and maintains system integrity even under high load or simultaneous requests.
+
+Error Handling;
+The API provides clear, descriptive success or error messages for all operations. Some examples include:
+ Trying to lock a seat that is already locked or booked.
+ Attempting to confirm a seat that is not currently locked.
+ Providing an invalid seat ID for any operation.
+
+Learning Outcomes'
+
+- Handling Concurrency: Using locks to safely manage multiple requests at the same time.
+- Data Management: Storing and updating seat states in memory in a clear and efficient manner.
+- Express.js API Development: Implementing GET and POST endpoints that respond with structured JSON for easy client interaction.
+- Timers in Node.js: Using setTimeout to automatically release resources if locked seats are not confirmed within a certain time.
+- Error Handling: Providing meaningful messages for success, failure, or invalid actions to improve user experience.

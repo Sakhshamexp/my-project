@@ -1,0 +1,58 @@
+Command Line Employee Management System
+This document describes the structure and functionality of a Command Line Interface (CLI) Employee Management System built using Node.js.
+The application uses the built-in readline module to provide an interactive, menu-driven experience for managing employee records.
+
+Core Components and Workflow
+
+1. Initialization and Interface
+The application begins by importing the readline module to facilitate interaction. A readline interface is then created,
+connecting the program's standard input (process.stdin) and standard output (process.stdout) to enable real-time user input capture and message display.
+
+2. Data Storage
+Employee data is stored in a JavaScript array named employees. Each employee is represented as an object containing their unique id and name.
+
+3. User Interaction Flow
+
+Menu Display
+The central showMenu function presents the user with a concise list of available options:
+
+1. Add Employee
+2. List Employees
+3. Remove Employee by ID
+4. Exit
+
+The program then waits for the user to select an option.
+
+Menu Handling
+The handleMenu function processes the user's choice using a switch statement.
+This directs the application flow to the appropriate function: addEmployee, listEmployees, or removeEmployee, or terminates the program upon selecting 'Exit'.
+
+Key Functions
+
+Adding an Employee
+- The user is prompted to enter the Employee ID and Name.
+- A new employee object {id, name} is constructed and appended to the employees array.
+- A confirmation message is displayed before returning to the main menu.
+
+Listing Employees
+- The function checks if the employees array is empty.
+- If data exists, it iterates through the array and neatly displays the index, ID, and Name for every employee.
+- The system then returns control to the menu.
+
+Removing an Employee
+- The user is asked to provide the ID of the employee to be removed.
+- The program uses the findIndex method to locate the matching employee object in the array.
+- If found, the employee is removed from the array using the splice method, and a confirmation is provided.
+- If not found, a message indicating the ID was not present is displayed.
+- The menu is redisplayed.
+
+Exiting the Program
+Selecting the 'Exit' option closes the readline interface, which gracefully terminates the Node.js process.
+
+Learning Outcomes
+This project demonstrates core concepts in developing interactive Node.js CLI applications:
+
+- Input/Output: Effective use of the readline module for seamless CLI interaction.
+- Data Management: Fundamental array operations (add, search, delete) for data manipulation.
+- Application Structure: Implementing a robust menu-driven architecture using functions and switch-case logic for clear program flow.
+- Project Organization: Structuring a self-contained, functional Node.js application in a single file.
