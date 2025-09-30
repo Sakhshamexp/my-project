@@ -10,7 +10,7 @@ function Onlinestore() {
     e.preventDefault();
     setOrders([...orders, { id: +id, product, status }]);
     setId(""); setProduct(""); setStatus("");
-  };
+  };  
 
   return (
     <div className="container">
