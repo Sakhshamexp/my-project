@@ -1,0 +1,65 @@
+Title: E-commerce Catalog with Nested Document Structure in MongoDB
+Objective: Model products with nested `variants` (color, size, stock), seed sample data, and demonstrate retrieving all products, 
+filtering by category, and projecting variant details — using Mongoose, Postman and MongoDB Compass.
+
+1) Project / runtime overview
+- `server.js` connects to local MongoDB at `mongodb://localhost:27017/ecom_catalog_db`, mounts the routes at `/api/products`,
+   and prints available endpoints when the server starts.
+- Routes live in `routes/products.js`. The Mongoose model is `models/Product.js`.
+- You test API calls with Postman and inspect stored documents with MongoDB Compass.
+
+2) Schema (models/Product.js)
+- VariantSchema (no `_id`):
+   color: String (required)
+  - size: String (required)
+  - stock: Number (required, min:0)
+- ProductSchema:
+    name: String (required, trimme, unique)
+  - price: Number (required, min:0)
+  - category: String (required, indexed)
+  - description: String (default provided)
+  - variants: [VariantSchema] with validation to require at least one variant
+  - timestamps: true (adds createdAt, updatedAt)
+
+Why this matters: nesting variants inside each product keeps related data together; category index speeds queries; 
+schema validation prevents empty variant lists.
+
+3) Endpoints & behaviour
+
+A. Seed data
+POST http://localhost:4000/api/products/seed
+- Deletes existing products then inserts 3 sample products.
+- Returns { status: "success", message: "3 products inserted." }
+
+B. Get all products
+GET http://localhost:4000/api/products
+- Returns every product sorted alphabetically by name.
+
+C. Filter by category
+GET http://localhost:4000/api/products/filter?category=Apparel
+- Returns only name, price, category, variants for products in that category.
+
+D. Project variants by color
+GET http://localhost:4000/api/products/variants/:color
+Example: /api/products/variants/Brown
+- Uses aggregation pipeline ($unwind + $match + $project).
+- Returns product name, price, and the matched variant.
+- Case-insensitive match on color.
+
+4) How to test;
+1. Start server: node server.js
+2. In Postman:
+   - POST /seed → expect 3 products inserted.
+   - GET / → list of all products.
+   - GET /filter?category=Apparel → only Apparel products.
+   - GET /variants/Brown → all products having Brown variant.
+3. In Compass:
+   - Open database ecom_catalog_db, collection products.
+   - Inspect seeded documents and nested variants.
+
+5) Internal notes / implementation details
+- Seeding uses insertMany (fast bulk insert). deleteMany({}) resets the collection first.
+- find + select keeps payload smaller.
+- Aggregation pipeline lets you query inside nested arrays.
+- Validation: unique name, min price/stock, non-empty variants array.
+- Errors return proper HTTP codes: 400 (bad request), 404 (not found), 500 (server).
