@@ -1,0 +1,55 @@
+Account Transfer System: Manual Consistency for Financial Data
+Our primary task for this project was to engineer a dependable money transfer service built on Node.js and MongoDB. The central technical challenge was  to 
+guarantee absolute financial consistency—meaning, a sender must always have the necessary funds, and both accounts must be updated successfully—all without
+leveraging the database's native transaction features.
+
+
+
+Organizing the Application Structure:
+The solution adopts a clean, modular structure, which is vital for any serious backend application. This organization keeps our system manageable 
+and focuses each file on a specific responsibility.
+
+ --server.js (The Backbone): 
+This is the core setup module. It takes care of loading critical environment variables, initiating the connection to MongoDB through the connectDB utility, 
+and deploying the Express server. It ensures a stable foundation before any business operation can occur.
+
+ --Account.js (The Blueprint): 
+Serving as the data model, this Mongoose Schema defines the precise structure for every account document in our database. It rigorously mandates a user name 
+and a balance field, enforcing data quality from the moment data is stored.
+
+ --accountLogic.js (The Transaction Controller): 
+This module contains the specialized routes and all the business rules. It includes the crucial /transfer  endpoint, alongside the handy /create-users route 
+for test environment setup. All validation logic and sequencing of database operations happen here.
+
+
+
+Operational Flow (How Transfers are Executed):
+
+Preparation (/create-users route): 
+To ensure a clean testing environment, this initial route is used to clear the database and instantly populate it with our two sample users,
+Sakhsham (at 1100) and Parv (at 501).
+
+The Transfer Protocol (/transfer route): 
+When a transfer is initiated, the application begins a carefully orchestrated process to protect the integrity of the data.
+
+Phase 1: Dual Retrieval: 
+The system performs two separate database queries to locate the sender and the receiver accounts using their IDs. A failure to find either account immediately 
+aborts the transfer.
+
+Phase 2: Logic Enforcement (The Safety Check): 
+This step is the non-transactional safeguard. It uses an explicit application-level check (if (sender.balance < transferAmount)) to confirm sufficient
+funds before any modification is attempted. This prevents bad debits from ever occurring.
+
+Phase 3: Sequential Persistence: 
+Once approved, the update proceeds in two distinct steps: the amount is deducted from the sender's account and saved, and then the amount is added to the 
+receiver's account and saved. This sequential update ensures the data reflects the intended financial change.
+
+Phase 4: Output: 
+A successful message is returned to the user, confirming the transfer details and the new balances for both 
+parties.
+
+
+--Key Knowledge Gained:
+This exercise strongly reinforced the importance of writing defensive, predictable code. We became proficient in using Application-Level Logic as a means of 
+data consistency assurance when direct database transactions are unavailable or undesirable. This process of manually managing dependent updates across multiple 
+documents is a valuable technique, complementing our skills in setting up Mongoose models  and structuring Node.js routes logically.

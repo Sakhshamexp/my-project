@@ -1,0 +1,43 @@
+Middleware Implementation for Logging and Bearer Token Authentication
+The entire purpose of this assignment was simple: to figure out how to put 'middle managers' (middleware) into our Express application flow. 
+We needed to ensure every incoming request was logged, and that sensitive  routes were protected by checking for a special key.
+
+
+Setup and Structure:
+This whole project uses a single server.js file for simplicity. We start by initializing the Express app and immediately add app.use(express.json()) to handle
+incoming data. To maintain order, user CRUD routes (/users) are defined directly, but all sensitive routes are grouped under a separate router dedicated to 
+the /admin path.
+
+
+Operational Flow (How Middleware Working):
+
+Middleware functions are fantastic because they execute in sequence before the final route handler runs. They essentially form a processing pipeline for every request.
+
+--Global Logging (Applied to Every Request): 
+We use two app.use(...) calls to apply our logging middleware globally.The second logging function is most useful: it logs the HTTP method (GET, POST), 
+the URL (/users, /admin/dashboard),and the exact timestamp ([YYYY-MM-DDTHH:MM:SS.sssZ]) to the console.
+The next() call at the end of the logger is vital; it tells Express to pass the request along to the next item in the pipeline. Without it, the application 
+would just hang!
+
+--Security Check (authMiddleware): 
+This function is our security enforcement. It checks the request headers for a field called authorization. We use a simple check: if the value equals the 
+fixed string mysecrettoken, the request is allowed to continue using next().
+Otherwise, if the token is wrong or missing, the middleware sends a 403 Forbidden response and stops the request right there, preventing access to the protected
+route.
+
+
+Application of Middleware:
+The logging middleware is applied globally, seeing every request (e.g., /users and /admin/dashboard).
+The authMiddleware is applied only to the /admin route group using app.use('/admin', authMiddleware, router);.
+This means public routes like /users are always accessible, while /admin/dashboard requires the secret key.
+
+
+--Key Knowledge Gained:
+1.Middleware Chaining: We mastered the concept of sequential processing, understanding how functions are executed 
+one after the other, and how the critical next() function governs the flow through the request pipeline.
+
+2.Targeted Security: We demonstrated the ability to apply authentication logic only to sensitive, protected routes 
+(/admin), while leaving public endpoints (/users) open and accessible.
+
+3.Observability via Logging: The global logging implementation successfully established the foundation for request 
+monitoring, proving how middleware can be used to gather vital information about application usage and performance.

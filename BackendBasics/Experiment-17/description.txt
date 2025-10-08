@@ -1,0 +1,48 @@
+Secure Access and Basic Banking Operations (JWT Implementation)
+The entire purpose of this assignment was simple, really: establishing a secure,working backend for a basic banking system.
+We needed to ensure that only authorized people could access and perform core financial operations like checking balances, depositing cash, 
+and processing withdrawals.
+
+Organizing the Application Structure:
+The project utilizes a modular structure, where components are neatly compartmentalized across several files.
+This approach facilitates better maintenance and focuses the role of each part of the system.
+
+ --server.js (The Entry Point): 
+This file is your main configuration. It handles the initial setup of the Express server, defining the port it listens on and initializing 
+the application by incorporating all the necessary route handlers. It acts as the orchestrator, keeping the core setup minimal and clean.
+
+ --bankingRoutes.js (The Business Logic): 
+Here is where the actual financial services reside. This module contains the logical implementation for all primary banking operations—login,
+deposit, and withdrawal—and is responsible for managing the account balance state. Separating the business rules here makes it easy to update 
+functionality without tampering with server configuration.
+
+ --authMiddleware.js (The Security Guard): 
+This component is singular in its focus: security. It holds the verifyToken function which is a critical piece of infrastructure. If ever we need 
+to upgrade the type of authentication—maybe using a different token scheme—only this file requires amendment. This shows good practice in keeping 
+responsibilities distinct.
+
+
+Operational Flow (How Things Working):
+
+Gaining Access (The /api/login route): 
+A user first sends their credentials. If the provided details match our hardcoded record, the system issues a JSON Web Token (JWT). 
+Think of this token as a temporary security pass that is signed and sealed by the server.
+
+Accessing Services (Protected Routes): 
+When a request for a banking service—like checking the balance or depositing—arrives, it first stops at the verifyToken middleware 
+that we import from authMiddleware.js.
+
+The middleware extracts the token from the HTTP header.
+It then verifies the token's validity, checking its signature and whether it's expired. If the token is improper or missing entirely, the
+request is cut short, and a forbidding error message is sent back.
+If validation is successful, the request moves along to the intended function in bankingRoutes.js.
+
+Financial Integrity (The /api/withdraw logic): 
+Beyond simple deposits, the withdrawal endpoint includes an important, sensible check: if (amount > balance). This validation ensures that the 
+user's withdrawal request never exceeds the funds currently available in the account, which keeps the simulated balance from being illogical or negative.
+
+--Learnings Achieved:
+This project was a big success in demonstrating foundational API development skills.
+We successfully implemented Stateless Authentication using JWTs; this is where the server trusts the token completely and does not require 
+holding onto session information for every user. Most important, we applied Modularity in Express.js by segmenting routing and middleware. 
+This practice is vital for building scalable and maintainable backend applications.
