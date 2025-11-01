@@ -1,0 +1,15 @@
+{
+  "name": "experiment-26",
+  "version": "1.0.0",
+  "description": "CI/CD pipeline demo using GitHub Actions",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Running tests...\" && node index.js && echo \"Tests passed!\"",
+    "build": "echo \"Building project...\" && mkdir -p build && echo '<h1>Build Successful</h1>' > build/index.html"
+  },
+  "author": "Saksham",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {}
+}
