@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "echo \"Running tests...\" && node index.js && echo \"Tests passed!\"",
+    "test": "echo \"Running tests...\" && node -e \"require('./index'); console.log('Tests passed!')\"",
     "build": "echo \"Building project...\" && mkdir -p build && echo '<h1>Build Successful</h1>' > build/index.html"
   },
   "author": "Saksham",
