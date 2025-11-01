@@ -1,0 +1,29 @@
+Title:
+Set Up CI/CD Pipeline using GitHub Actions
+
+Objective:
+1. To understand the concept and importance of Continuous Integration and Continuous Deployment (CI/CD) in modern software development workflows.  
+2. To automate the process of testing, building, and deploying code using GitHub Actions without any manual intervention.  
+3. To gain hands-on experience in writing and configuring workflow files using YAML syntax for managing project automation efficiently.  
+
+What We Did:
+Theoretically, we learned that CI/CD is an essential DevOps practice designed to improve productivity and ensure consistency in software delivery. Continuous
+Integration ensures that code changes from multiple developers are automatically tested and merged into the main branch, while Continuous Deployment automates
+the release process so that every successful build can be deployed seamlessly to production. We also studied how GitHub Actions provides an integrated environment to create such automated pipelines directly within a GitHub repository.
+
+Practically, we implemented this knowledge by creating a folder structure `.github/workflows` inside our project directory and adding a file named `main.yml`. In this 
+YAML configuration file, we defined multiple steps for our workflow, such as:
+- Triggering the workflow automatically on every push or pull request to the main branch.  
+- Setting up a Node.js environment using the official GitHub Actions runner.  
+- Installing all project dependencies using `npm install`.  
+- Running automated tests using `npm test` to verify code stability.  
+- Building the production-ready application using `npm run build`.  
+
+This workflow ensures that the application is consistently tested and built on every code change. Optionally, the setup can be extended to deploy artifacts automatically 
+to hosting services such as GitHub Pages, Netlify, or AWS S3. After committing and pushing the configuration, we verified that the workflow executed successfully by 
+checking the “Actions” tab in the GitHub repository, where all stages of the workflow were displayed with real-time logs.
+
+Learning Outcomes:
+1. Understood the principles of CI/CD and how automation enhances software reliability and developer productivity.  
+2. Learned to configure and manage GitHub Actions workflows using YAML syntax for different stages like build, test, and deployment.  
+3. Gained practical experience in implementing an automated CI/CD pipeline that continuously validates and builds the application on each code push.

@@ -1,0 +1,92 @@
+Project:
+Dockerize a React Application with Multi-Stage Build
+
+Objectives:
+- To understand and implement containerization using Docker for a React application.
+- To create a multi-stage Dockerfile that separates the build phase from the production phase for improved efficiency.
+- To reduce image size by excluding unnecessary dependencies from the production image.
+
+What We Did:
+
+Theoretical Steps:
+1. Started by creating a basic React application using Create React App.
+   Command used:
+   npx create-react-app experiment-25
+
+2. Understood how React builds its static files inside the "build" directory when we run:
+   npm run build
+   This command generates optimized files ready for deployment.
+
+3. Learned about the concept of multi-stage builds in Docker.
+   - In the first stage, we use Node.js to install dependencies and build the React app.
+   - In the second stage, we use Nginx to serve the already-built static files efficiently.
+
+4. Created a .dockerignore file to avoid sending unnecessary files like node_modules, .git, and temporary build folders to the Docker context.
+   This helps reduce build time and image size.
+
+5. Wrote a Dockerfile with two stages:
+   - Stage 1 (Builder Stage): Uses a Node.js image to install dependencies and build the app.
+   - Stage 2 (Production Stage): Uses an Nginx image to copy the build output and serve it.
+
+6. Built the Docker image using:
+   docker build -t react-app-nginx .
+
+7. Verified that the build process completed successfully and produced a lightweight, production-ready image.
+
+8. Ran the container using:
+   docker run -d -p 8080:80 react-app-nginx
+   This command maps the container’s port 80 (default Nginx port) to port 8080 on the host system.
+
+9. Verified that the React app was successfully served at:
+   http://localhost:8080
+
+10. Checked running containers with:
+    docker ps
+
+11. Stopped the container after testing using:
+    docker stop <container_id>
+
+Practical Implementation:
+- First, created the optimized production build for React using:
+  npm run build
+
+- Then we wrote the following multi-stage Dockerfile:
+
+  ----------------------------------------------------
+  # Stage 1: Build
+  FROM node:18 AS build
+  WORKDIR /app
+  COPY package*.json ./
+  RUN npm install
+  COPY . .
+  RUN npm run build
+
+  # Stage 2: Serve
+  FROM nginx:alpine
+  COPY --from=build /app/build /usr/share/nginx/html
+  EXPOSE 80
+  CMD ["nginx", "-g", "daemon off;"]
+  ----------------------------------------------------
+
+- The first stage installs all dependencies and compiles the React app into static HTML, CSS, and JS files.
+- The second stage takes only the compiled files from the first stage and serves them through Nginx.
+- This process ensures that the final image does not contain any unnecessary development dependencies or source files.
+
+- Verified image size using:
+  docker images
+  The size was significantly smaller than a single-stage build containing Node.js dependencies.
+
+- Finally, tested the running container in the browser. The app displayed the React default page, confirming that it was served successfully via Docker and Nginx.
+
+Learning Outcomes:
+1. Gained a clear understanding of how multi-stage builds in Docker optimize both image size and security.
+2. Learned to containerize a React application and deploy it with Nginx as a production server.
+3. Understood how to separate build-time dependencies (Node.js) from runtime dependencies (Nginx).
+4. Learned to use essential Docker commands for building, running, checking, and stopping containers.
+5. Understood how to use the .dockerignore file to exclude unnecessary files during Docker image creation.
+6. Developed practical skills for creating lightweight and production-ready Docker images suitable for deployment on any system.
+
+Conclusion:
+Through this experiment, we successfully dockerized a React application using a multi-stage build approach. 
+The final image was smaller, faster to deploy, and more secure. We also verified that the application ran perfectly 
+on localhost through Nginx, confirming the efficiency of this Dockerization process.
